@@ -1,16 +1,17 @@
 import React from "react";
-import { BsTags } from "react-icons/bs";
 import CartAsideRight from "./CartAsideRight";
 import CartAsideLeft from "./CartAsideLeft";
 import { TbArrowBack } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const CartModal = () => {
+  const cartDetails = useSelector((state) => state.cart);
   return (
     <section className="flex justify-center items-center">
       <main className=" flex flex-wrap">
-        <CartAsideLeft />
-        <CartAsideRight />
+        <CartAsideLeft props={cartDetails}/>
+        <CartAsideRight props={cartDetails}/>
       </main>
       <article className="absolute right-4 top-4">
         <Link to="/">

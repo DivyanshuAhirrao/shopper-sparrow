@@ -1,13 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BsTags } from "react-icons/bs";
 
-const CartAsideRight = () => {
+const CartAsideRight = ({props}) => {
     // state
   const [checked, setChecked] = React.useState(true);
   // checkbox click handler
   function handleClick() {
     setChecked(!checked);
   };
+
+  const { items } = props;
+  let sumWithoutDiscount = 0;
+  let sumWithDiscount = 0;
+  let difference = 0;
+  let couponDiscount = 500.00;
+  const platformFee = 22.45;
+  let total = 0;
+  let tot=0;  
+    items.map(e=>{
+      total += e.price;
+      tot += e.price - (e.price*(Math.round(e.discountPercentage) /100));
+    })
+    difference = ((total-tot)*80).toFixed(2);
+    sumWithoutDiscount = (total*80 ).toFixed(2);
+    sumWithDiscount = (tot*80+(platformFee - couponDiscount)).toFixed(2);
+    
   return (
     <>
 <aside className="w-[364.5px] h-[100vh] bg-slate-100 border-l-2 border-gray-800 flex flex-col gap-3 items-center p-4 sticky top-0">
@@ -60,11 +77,11 @@ const CartAsideRight = () => {
             <article className="px-2 h-[150px] flex flex-col justify-evenly">
                 <div className="flex justify-between font-semibold text-gray-700">
                     <p>Total MRP</p>
-                   <h6>₹18000</h6>
+                   <h6>₹{sumWithoutDiscount}</h6>
                 </div>
                 <div className="flex justify-between font-semibold text-gray-700">
                     <p>Discount on MRP</p>
-                   <h6 className="text-green-500">-₹5500</h6>
+                   <h6 className="text-green-500">-₹{difference}</h6>
                 </div>
                 <div className="flex justify-between font-semibold text-gray-700">
                     <p>Coupon Discount </p>
@@ -72,7 +89,7 @@ const CartAsideRight = () => {
                 </div>
                 <div className="flex justify-between font-semibold text-gray-700">
                     <p>Platform Fee <span className="text-red-500 hover:text-red-600 cursor-pointer"> Know More</span> </p>
-                   <h6>₹22.45</h6>
+                   <h6>₹{platformFee}</h6>
                 </div>
                 <div className="flex justify-between font-semibold text-gray-700">
                     <p> Shipping Fee <span className="text-red-500 hover:text-red-600 cursor-pointer"> Know More</span> </p>
@@ -83,7 +100,7 @@ const CartAsideRight = () => {
 
             <article className="text-[17px] h-[55px] flex justify-center items-center bg-blue-50 text-gray-700 font-bold flex justify-between px-2 border-t-2 border-gray-300">
                 <p>Total Amount</p>
-                <h6>₹12022.45</h6>
+                <h6>₹{sumWithDiscount}/-</h6>
             </article>
 
             <article className="px-2">

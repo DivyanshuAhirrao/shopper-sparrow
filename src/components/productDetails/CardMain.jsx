@@ -11,29 +11,47 @@ import { CartItems, addToCart } from "../../redux/slice/cartSlice";
 import { removeFromCart } from "../../redux/slice/cartSlice";
 
 const CardMain = ({ e }) => {
+
+
   let { setProductId } = useContext(GlobalDataApi);
 
-  const cartDetails = useSelector((state)=> state.cart);
+  const cartDetails = useSelector((state) => state.cart);
+  const itemsArray = cartDetails.items;
   const dispatch = useDispatch();
 
-  
-
   const addProduct = () => {
-    cartDetails.items.map(item=>{
-        if(item.id === e.id){
-            alert('Item already added')
-        }
-        else{
-            dispatch(addToCart(e));
-            console.log("I from Cartmain : "+e);
-        }
-    })
+    const flag = false;
+    console.log(e);
+    console.log(itemsArray);
+    cartDetails.items.map((item) => {
+      if (item.id === e.id) {
+        alert("Item already added");
+        flag = true;
+      } 
+    });
+    if(!flag){
+      console.log("Adding More Item");
+        dispatch(addToCart(e));
+        console.log("I from Cartmain : ");
+        console.log(e);
+    }
   };
 
-  const removeProduct = (id)=>{
+  const removeProduct = (id) => {
+    const flag = false;
+    itemsArray.map(item=>{
+      if(item.id === e.id){
+        flag = true;
+      }
+    })
+    if(!flag){
     dispatch(removeFromCart(id));
     console.log(id);
-  }
+    console.log(itemsArray);
+    }else{
+      alert("Add item to cart first !");
+    }
+  };
 
   let handleImgError = (e) => {
     e.target.src = "https://demofree.sirv.com/nope-not-here.jpg";
@@ -98,7 +116,7 @@ const CardMain = ({ e }) => {
             <IoArrowRedoSharp />
           </button>
           <button
-            onClick={removeProduct}
+            onClick={()=>removeProduct(e)}
             className=" w-[50%] h-[90%] bg-red-200 hover:bg-red-400 transition-all duration-300 text-[18px] hover:text-[20px] rounded-md pl-14"
           >
             <MdDeleteSweep />

@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BiSolidOffer } from "react-icons/bi";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import CartItem from "./CartItem";
 
-const CartAsideLeft = () => {
+const CartAsideLeft = ({ props }) => {
+  const { items } = props;
+  useEffect(() => {
+    console.log(items);
+  }, []);
   return (
     <>
       <aside className="w-[740px]  bg-slate-100 flex flex-col items-center gap-2 p-4">
-        <div className="h-[80px] border-2 border-gray-200 w-[100%] rounded-[4px] flex justify-between items-center px-4">
+        <article className="sticky top-0 bg-slate-100 border-2 py-2 border-gray-200 w-[100%] rounded-[4px]">
+
+        <div className="h-[80px]  bg-slate-100  border-gray-200 w-[100%] rounded-[4px] flex justify-between items-center px-4">
           <p className="font-bold text-gray-600 text-[14px]">
             Check delivery Time & Services{" "}
           </p>
@@ -15,7 +21,7 @@ const CartAsideLeft = () => {
             ENTER PIN CODE
           </button>
         </div>
-        <div className="h-[120px] border-2 border-gray-200 w-[100%] rounded-[4px]  px-4">
+        <div className="h-[120px]  border-gray-200 w-[100%] rounded-[4px]  px-4">
           <p className="pt-2 flex font-bold text-gray-600 text-[14px]">
             <BiSolidOffer className="text-[20px]" />
             <h6 className="pl-4">Available Offers</h6>
@@ -30,10 +36,14 @@ const CartAsideLeft = () => {
           </h1>
         </div>
 
+        </article>
+
         <div className=" border-2 border-gray-200 w-[100%] rounded-[4px] p-4 flex flex-col gap-2">
-            <CartItem />
-            <CartItem />
-            <CartItem />
+          {items.map((e) => {
+            return(
+              <CartItem props={e}/>
+            )
+          })}
         </div>
       </aside>
     </>

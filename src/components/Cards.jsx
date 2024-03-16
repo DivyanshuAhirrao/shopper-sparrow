@@ -1,8 +1,5 @@
 import React, { Fragment, useContext } from "react";
 import { GlobalDataApi } from "../context/GlobalData";
-// import { FaRegHeart } from "react-icons/fa";
-// import { IoArrowRedoSharp } from "react-icons/io5";
-// import { MdDeleteSweep } from "react-icons/md";
 import Card from "./Card";
 import CardMain from "./productDetails/CardMain";
 
@@ -23,8 +20,6 @@ const Cards = ({ users }) => {
             val.description.toLowerCase().includes(inputVal.toString().toLowerCase()) ||
             val.price.toString().includes(inputVal.toString())
           ) {
-            // console.log(val);
-            // console.log(val.price*80);
             return val;
           }
         })

@@ -26,7 +26,7 @@ const Navbar = () => {
   console.log(name);
 
   return (
-    <nav className="flex justify-between items-center w-[100%] h-[75px]">
+    <nav className="flex justify-between sticky top-0 z-30 items-center w-[100%] h-[75px]">
       <aside className="px-4 w-[50%] h-[100%] bg-gray-100 text-[150%] text-[#c7ecd0] flex items-center">
         <img
           src={ziara}
