@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* #global-box{
+    background-image: linear-gradient(to bottom, #383f42, #3b464b, #3e4c53, #41535d, #445a66, #485f6d, #4b6573, #4f6a7a, #546f7f, #597484, #5f7a8a, #647f8f);
+}
+#celeb-box{
+    background-image: linear-gradient(to bottom, #647f8f, #587b89, #4e7781, #447378, #3d6f6e, #3d6f6e, #3d6f6e, #3d6f6e, #447378, #4e7781, #587b89, #647f8f);
+} */
+
+/* #trending-box{
+    border-bottom-left-radius:80px ;
+    border-bottom-right-radius:80px ;
+    box-shadow: 1px 1px 5px 2px rgb(57, 69, 39);
+    background-image: linear-gradient(to bottom, #647f8f, #5f7a8a, #597484, #546f7f, #4f6a7a, #4b6573, #485f6d, #445a66, #41535d, #3e4c53, #3b464b, #383f42);
+} */
+
+
+#carousel-container{
+    background: url('./media/bg-carousel.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+
+#blink {
+    animation: blinker 1.5s linear infinite;
+    color: red;
+    font-family: sans-serif;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0.6;
+    }
+}
+
+#logo-blink {
+    animation: blinker 5s linear infinite;
+    color: maroon;
+    font-family: sans-serif;
+}
+
+@keyframes blinker {
+    20% {
+        color: rgb(128, 53, 0);
+    }
+    40% {
+        color: rgb(100, 128, 0);
+    }
+    60% {
+        color: rgb(0, 128, 87);
+    }
+    80% {
+        color: rgb(0, 30, 128);
+    }
+    100% {
+        color: rgb(128, 0, 128);
+    }
+}
+
+#discount-coupon, .discount-coupon {
+    animation: brightened 1.5s linear infinite;
+    color: red;
+    font-family: sans-serif;
+}
+
+@keyframes brightened {
+    50% {
+        filter: brightness(1.5)
+    }
+}
+
+#labeled{
+    animation: labels 1.5s linear infinite;
+    color: red;
+    font-family: sans-serif;
+}
+
+@keyframes labels {
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+
+/* Login - Posters  */
+
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+#login-poster-box{
+    box-shadow: 2px 2px 20px 5px rgb(55, 55, 55);
+}
