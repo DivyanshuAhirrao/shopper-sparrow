@@ -1,5 +1,4 @@
 import React from 'react'
-
 import imgp1 from "../media/payments/p1.jpg";
 import imgp2 from "../media/payments/p2.jpg";
 import imgp3 from "../media/payments/p3.jpg";

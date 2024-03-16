@@ -1,9 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext,useState } from "react";
 import img from "../media/img.png";
 import coupon from "../media/coupon.png";
 import { GlobalDataApi } from "../context/GlobalData";
-import { IoMdSearch } from "react-icons/io";
-import { FaRegHeart } from "react-icons/fa";
 import GlobalBrands from "../sliders/GlobalBrands";
 import CelebsSlider from "../sliders/CelebsSlider";
 import TrendingSlider from "../sliders/TrendingSlider";
@@ -11,34 +9,14 @@ import Cards from "./Cards";
 import Swipper from "../sliders/Swipper";
 import PosterSwipper from "../sliders/PosterSwipper";
 import Payments from "./Payments";
-import DiscountFilter from "./filters/DiscountFilter";
-import BrandFilter from "./filters/BrandFilter";
-import ColorFilter from "./filters/ColorFilter";
-import PriceFilter from "./filters/PriceFilter";
 import FilterWrapper from "./filters/FilterWrapper";
 
 
 const UI = () => {
-  let [count, setCount] = useState(0);
 
-  let box = document.querySelector("#carousel-box");
-  // let [users, setState] = useState([]);
-  let { inputVal, setInputVal, users } = useContext(GlobalDataApi);
+  let { inputVal, users } = useContext(GlobalDataApi);
 
-  let TOKEN = localStorage.getItem("TOKEN");
-
-  // let myUsers = async () => {
-  //   let responce = await fetch("https://dummyjson.com/products");
-  //   let data = await responce.json();
-  //   setState(data.products);
-
-  // };
-
-  // useEffect(() => {
-  //   myUsers();
-  // }, []);
-
-
+  
   return (
     <>
       {inputVal == "" ? (

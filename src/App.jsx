@@ -1,24 +1,12 @@
 import React from "react";
-import UI from "./components/UI";
-import Navbar from "./components/Navbar";
 import GlobalProvider from "./context/GlobalData";
-import Slider from "react-slick";
-import Footer from "./components/Footer";
 import {
   BrowserRouter,
   Routes,
   Route,
-  createBrowserRouter,
-  RouterProvider,
 } from "react-router-dom";
 import Layouts from "./Layouts";
-import Home from "./firebase/Home";
-import LSForm from "./firebase/LSForm";
-import Portals from "./try-react-portals/Portals";
-import Modal from "./try-react-portals/Modal";
-import CartModal from "./try-react-portals/CartModal";
-import NewPractice from "./practice/NewPractice";
-import ReducerTrial from "./trials/ReducerTrial";
+import CartModal from "./components/cart/CartModal";
 import ProductDetailsPage from "./components/productDetails/ProductDetailsPage";
 import Login from "./components/loginSignup/Login";
 import Signup from "./components/loginSignup/Signup";

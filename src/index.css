@@ -2,20 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* #global-box{
-    background-image: linear-gradient(to bottom, #383f42, #3b464b, #3e4c53, #41535d, #445a66, #485f6d, #4b6573, #4f6a7a, #546f7f, #597484, #5f7a8a, #647f8f);
-}
-#celeb-box{
-    background-image: linear-gradient(to bottom, #647f8f, #587b89, #4e7781, #447378, #3d6f6e, #3d6f6e, #3d6f6e, #3d6f6e, #447378, #4e7781, #587b89, #647f8f);
-} */
-
-/* #trending-box{
-    border-bottom-left-radius:80px ;
-    border-bottom-right-radius:80px ;
-    box-shadow: 1px 1px 5px 2px rgb(57, 69, 39);
-    background-image: linear-gradient(to bottom, #647f8f, #5f7a8a, #597484, #546f7f, #4f6a7a, #4b6573, #485f6d, #445a66, #41535d, #3e4c53, #3b464b, #383f42);
-} */
-
 
 #carousel-container{
     background: url('./media/bg-carousel.png');

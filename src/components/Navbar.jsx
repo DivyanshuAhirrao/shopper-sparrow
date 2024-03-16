@@ -5,7 +5,6 @@ import { IoSearchSharp } from "react-icons/io5";
 import { IoCameraOutline } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegUserCircle } from "react-icons/fa";
-import CartModal from "../try-react-portals/CartModal";
 import { Link } from "react-router-dom";
 import { GlobalDataApi } from "../context/GlobalData";
 import { useSelector } from "react-redux";
@@ -113,8 +112,9 @@ const Navbar = () => {
             </div>
             <div className="pt-3">
               <FaRegUserCircle className="border-b-2 border-gray-300 pb-2 text-[33px] text-[#05230cba] hover:border-green-700 hover:text-[37px] hover:text-[#24843c] transition-all duration-300" />
-              <h1 className="text-[9px] pt-[2px] font-bold text-center text-[#0d3918] w-[50px]">
-                {data != null ? data.name : "Profile"}
+              <h1 className="text-[9px] pt-[2px] font-bold text-center text-[#0d3918] w-[50px] pr-4">
+                {/* {data != null ? data.name : "Profile"} */}
+                Profile
               </h1>
             </div>
           </>
