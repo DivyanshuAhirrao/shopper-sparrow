@@ -1,5 +1,7 @@
 import React from "react";
 import { IoCart } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../redux/slice/cartSlice";
 
 const RightProductDetailsBox = ({ props }) => {
   let {
@@ -9,9 +11,31 @@ const RightProductDetailsBox = ({ props }) => {
     price,
     discountPercentage,
     category,
-    stock,
     rating,
   } = props;
+
+  const cartDetails = useSelector((state) => state.cart);
+  const itemsArray = cartDetails.items;
+  const dispatch = useDispatch();
+
+  const addProduct = () => {
+    alert('Product added successfully')
+    let flag = false;
+    console.log(itemsArray);
+    cartDetails.items.map((item) => {
+      if (item.id === props.id) {
+        alert("Item already added");
+        flag = true;
+      } 
+    });
+    if(!flag){
+      console.log("Adding More Item");
+        dispatch(addToCart(props));
+        console.log("I from Cartmain : ");
+        console.log(props);
+    }
+  };
+
   return (
     <article className="w-[50%] h-[100%] ">
       <aside className="p-4 w-[80%] h-[100%] flex flex-col gap-2">
@@ -60,19 +84,13 @@ const RightProductDetailsBox = ({ props }) => {
           </span>
           <p className="relative bottom-2 left-2">{rating.toFixed(1)}</p>
         </h1>
-        <h1 className="font-bold text-[27px] text-gray-600 flex">
-          <span className="text-gray-400 font-semibold text-[16px]">
-            ratings : 
-          </span>
-          <p className="relative bottom-2 left-2">{rating.toFixed(1)}</p>
-        </h1>
 
         <div className="flex gap-6">
-          <aside className="bg-gray-400 px-4 rounded-md flex gap-3">
+          {/* <aside className="bg-gray-400 px-4 rounded-md flex gap-3">
             <button className="text-orange-300">-</button>0
             <button className="text-orange-300">+</button>
-          </aside>
-          <aside className="flex bg-orange-500 px-12 py-1 rounded-md text-white font-bold gap-2">
+          </aside> */}
+          <aside onClick={addProduct} className="flex bg-orange-500 px-12 py-3 rounded-md text-white font-bold gap-2 hover:cursor-pointer">
             <IoCart className="relative top-[3px] text-white text-[18px]" /> Add
             to cart
           </aside>

@@ -16,7 +16,7 @@ const CartItem = ({ props }) => {
   }
   function decrement(){
     
-    if (state < 1) {
+    if (state < 2) {
       toast.error('Quantity Cannot be nagative');
     }
     else{

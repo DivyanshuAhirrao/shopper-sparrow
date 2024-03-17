@@ -10,10 +10,7 @@ import { addToCart } from "../../redux/slice/cartSlice";
 import { removeFromCart } from "../../redux/slice/cartSlice";
 
 const CardMain = ({ e }) => {
-
-
   let { setProductId } = useContext(GlobalDataApi);
-
   const cartDetails = useSelector((state) => state.cart);
   const itemsArray = cartDetails.items;
   const dispatch = useDispatch();
@@ -55,13 +52,14 @@ const CardMain = ({ e }) => {
   let handleImgError = (e) => {
     e.target.src = "https://demofree.sirv.com/nope-not-here.jpg";
   };
+  
   return (
     <div
       className="h-[24.5rem] w-[16rem] border-b-2 border-green-700 overflow-hidden"
       key={e.id}
     >
       <div className="h-[17rem] w-[16rem] overflow-hidden">
-        <FaRegHeart className="absolute pl-2 pt-2 text-[33px] text-red-500 hover:text-red-500 z-10 hover:text-[36px] transition-all duration-300" />
+        <FaRegHeart className="absolute pl-2 pt-2 text-[33px] text-red-100 hover:text-red-400 cursor-pointer z-20 hover:text-[36px] transition-all duration-300" />
         <div className="absolute pt-[246px] pl-1 z-10">
           <p className="px-2 py-[1px] bg-gray-500 rounded text-white text-[12px] flex">
             {e.rating.toFixed(1)}
@@ -70,7 +68,7 @@ const CardMain = ({ e }) => {
             {e.stock}
           </p>
         </div>
-        <Link to="/productDetails">
+        <Link to={`/productDetails/${e.id}`}>
           <img
             src={e.images[0]}
             alt={e.title}
