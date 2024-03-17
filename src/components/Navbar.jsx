@@ -16,9 +16,9 @@ const Navbar = () => {
   let { inputVal, setInputVal, cartLength, setCartLength, data } =
     useContext(GlobalDataApi);
 
-    let[name, setName] = useState("");
+  let [name, setName] = useState("");
 
-    const cartItemCount = useSelector(CartItems);
+  const cartItemCount = useSelector(CartItems);
 
   // const str = JSON.stringify(data.name);
   // setName(str.slice(0, str.indexOf(" ")));
@@ -40,12 +40,7 @@ const Navbar = () => {
           >
             Clothing
           </a>
-          <a
-            href="#"
-            className="px-5 py-2 hover:bg-yellow-200 hover:text-red-900 rounded-[6px] transition-all duration-300"
-          >
-            Electronics
-          </a>
+
           <a
             href="#"
             className="px-5 py-2  hover:bg-yellow-200 hover:text-red-900 rounded-[6px] transition-all duration-300"

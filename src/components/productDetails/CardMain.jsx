@@ -4,10 +4,9 @@ import { IoArrowRedoSharp } from "react-icons/io5";
 import { MdDeleteSweep } from "react-icons/md";
 import { GlobalDataApi } from "../../context/GlobalData";
 import { IoMdStar } from "react-icons/io";
-// import ProductDetailsPage from "./productDetails/ProductDetailsPage";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { CartItems, addToCart } from "../../redux/slice/cartSlice";
+import { addToCart } from "../../redux/slice/cartSlice";
 import { removeFromCart } from "../../redux/slice/cartSlice";
 
 const CardMain = ({ e }) => {
@@ -20,7 +19,7 @@ const CardMain = ({ e }) => {
   const dispatch = useDispatch();
 
   const addProduct = () => {
-    const flag = false;
+    let flag = false;
     console.log(e);
     console.log(itemsArray);
     cartDetails.items.map((item) => {
@@ -38,7 +37,7 @@ const CardMain = ({ e }) => {
   };
 
   const removeProduct = (id) => {
-    const flag = false;
+    let flag = false;
     itemsArray.map(item=>{
       if(item.id === e.id){
         flag = true;
