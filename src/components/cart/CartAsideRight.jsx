@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { BsTags } from "react-icons/bs";
-import { loadStripe } from '@stripe/stripe-js'
 
 const CartAsideRight = ({ props }) => {
   const [checked, setChecked] = React.useState(true);
