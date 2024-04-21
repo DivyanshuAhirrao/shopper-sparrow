@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/slice/cartSlice";
 import { removeFromCart } from "../../redux/slice/cartSlice";
+import toast from "react-hot-toast";
 
 const CardMain = ({ e }) => {
   let { setProductId } = useContext(GlobalDataApi);
@@ -16,35 +17,20 @@ const CardMain = ({ e }) => {
   const dispatch = useDispatch();
 
   const addProduct = () => {
-    let flag = false;
-    console.log(e);
-    console.log(itemsArray);
-    cartDetails.items.map((item) => {
-      if (item.id === e.id) {
-        alert("Item already added");
-        flag = true;
-      } 
-    });
-    if(!flag){
-      console.log("Adding More Item");
-        dispatch(addToCart(e));
-        console.log("I from Cartmain : ");
-        console.log(e);
+    const isItemInCart = cartDetails.items.some((item) => item.id === e.id);
+    if (!isItemInCart) {
+      dispatch(addToCart(e));
+    } else {
+      toast.error("Item already added !");
     }
   };
 
   const removeProduct = (id) => {
-    let flag = false;
-    itemsArray.map(item=>{
-      if(item.id === e.id){
-        flag = true;
-      }
-    })
-    if(!flag){
-    dispatch(removeFromCart(id));
-    console.log(id);
-    console.log(itemsArray);
-    }else{
+    const itemExists = cartDetails.items.some(item => item.id === id);
+    if (itemExists) {
+      dispatch(removeFromCart(id));
+      toast.success("Product removed successfully !!")
+    } else {
       alert("Add item to cart first !");
     }
   };
@@ -113,7 +99,7 @@ const CardMain = ({ e }) => {
             <IoArrowRedoSharp />
           </button>
           <button
-            onClick={()=>removeProduct(e)}
+            onClick={()=>removeProduct(e.id)}
             className=" w-[50%] h-[90%] bg-red-200 hover:bg-red-400 transition-all duration-300 text-[18px] hover:text-[20px] rounded-md pl-14"
           >
             <MdDeleteSweep />

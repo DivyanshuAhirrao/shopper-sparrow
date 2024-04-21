@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { BsTags } from "react-icons/bs";
+import { loadStripe } from '@stripe/stripe-js'
 
 const CartAsideRight = ({ props }) => {
   const [checked, setChecked] = React.useState(true);
@@ -9,6 +10,10 @@ const CartAsideRight = ({ props }) => {
   }
 
   const { items } = props;
+
+  const handlePayment =()=>{
+    alert("Yet to add Payment functionality, will add in next release !!");
+  }
 
   let sumWithoutDiscount = 0;
   let sumWithDiscount = 0;
@@ -154,7 +159,7 @@ const CartAsideRight = ({ props }) => {
           </article>
 
           <article className="px-2">
-            <button className="w-[100%] bg-pink-500 py-2 text-white font-bold tracking-wide rounded-sm hover:text-[18px] transition-all duration-300 cursor-pointer">
+            <button onClick={handlePayment} className="w-[100%] bg-pink-500 py-2 text-white font-bold tracking-wide rounded-sm hover:text-[18px] transition-all duration-300 cursor-pointer">
               PLACE ORDER
             </button>
           </article>

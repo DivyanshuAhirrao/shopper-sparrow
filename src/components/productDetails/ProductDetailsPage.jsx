@@ -6,6 +6,7 @@ import { TbArrowBack } from "react-icons/tb";
 import { Link, useParams } from "react-router-dom";
 import { GlobalDataApi } from "../../context/GlobalData";
 import BackNavigator from "../BackNavigator";
+import Navbar from "../Navbar";
 
 const ProductDetailsPage = () => {
 
@@ -17,7 +18,7 @@ const ProductDetailsPage = () => {
   return (
     <>
       <main className="w-[100%] h-[100vh]">
-        <nav className="h-[11%] w-[100%] bg-gray-200"></nav>
+        <Navbar />
         <BackNavigator />
         <section className=" h-[89%] flex justify-center items-center">
           <main className=" h-[100%] w-[80%] flex flex-wrap">

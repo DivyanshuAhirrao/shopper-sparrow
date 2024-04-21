@@ -34,7 +34,6 @@ const GlobalProvider = ({ children }) => {
 
   let myUsers = async () => {
     let responce = await fetch("https://dummyjson.com/products");
-    // let responce = await fetch("https://api.escuelajs.co/api/v1/products");
     let data = await responce.json();
     setState(data.products);
   };
