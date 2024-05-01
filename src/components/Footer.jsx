@@ -16,12 +16,6 @@ const Footer = () => {
 
   let navigator = useNavigate();
 
-  let handleLogout = () => {
-    localStorage.removeItem("TOKEN");
-    navigator('/');
-    console.log(TOKEN);
-  };
-
   let help = [
     "Track Your Order",
     "FAQ",
@@ -82,7 +76,6 @@ const Footer = () => {
                     return <h6 key={ind} className="text-[13px] cursor-pointer hover:scale-[1.1] transition-all duration-300">{content}</h6>;
                   })}
                 </ul>
-                <button onClick={handleLogout} className="px-4 py-1 bg-blue-900 rounded-md "> LOGOUT </button>
               </article>
             </aside>
             <aside className="pl-6">

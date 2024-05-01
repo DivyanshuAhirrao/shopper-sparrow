@@ -123,3 +123,8 @@
   .scroller::-webkit-scrollbar-thumb:hover {
     background: #2d374894; /* color of the scrollbar handle on hover */
   }
+
+  /* Tooltip-CSS */
+  .tooltip-box ul li:hover{
+    color: red;
+  }
