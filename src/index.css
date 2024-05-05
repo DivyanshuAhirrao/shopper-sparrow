@@ -125,6 +125,46 @@
   }
 
   /* Tooltip-CSS */
+  .tooltip-box ul li{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
   .tooltip-box ul li:hover{
+    cursor: pointer;
     color: red;
+  }
+  ul h2 {
+    color: tomato;
+    font-weight: 700;
+    position: relative;
+  }
+  ul h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1.5px;
+    background-color: green;
+    transition: width 0.2s ease;
+  }
+  ul h2:hover::before{
+    width: 100%;
+  }
+  ul h2:hover{
+    cursor: context-menu;
+  }
+  .beauty-seaction ul{
+    width: 140px;
+  }
+  .beauty-seaction ul h2, .beauty-seaction ul li:hover{
+    color: rgb(2, 142, 93);
+  }
+  .beauty-seaction ul h2 + li, .home-living-section ul h2 + li{
+    padding-top: 10px;
+  }
+  .home-living-section ul{
+    width: 170px;
+  }
+  .home-living-section ul h2, .home-living-section ul li:hover{
+    color: rgb(247, 184, 10);
   }

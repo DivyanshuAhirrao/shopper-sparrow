@@ -9,87 +9,21 @@ import { Link } from "react-router-dom";
 import { GlobalDataApi } from "../context/GlobalData";
 import { useSelector } from "react-redux";
 import { CartItems } from "../redux/slice/cartSlice";
-import { Tooltip } from "@mui/material";
-import { CustomWidthTooltip } from "./hoverables/CustomTooltip";
-
-
-const MensData = () =>{
-  return(
-    <div className="tooltip-box flex gap-1">
-      <ul className="px-1 border-r-2">
-        <h1 className="text-[16px] text-emerald-700 font-semibold">home section heading</h1>
-        <a href="/cart"><li>mens</li></a>
-        <li>womens</li>
-        <li>children</li>
-        <li>jeans</li>
-        <li>shirt</li>
-      </ul>
-      <ul>
-        <h1 className="text-[16px] text-emerald-700 font-semibold">home section heading</h1>
-        <a href="/cart"><li>mens</li></a>
-        <li>womens</li>
-        <li>children</li>
-        <li>jeans</li>
-        <li>shirt</li>
-      </ul>
-      
-    </div>
-  )
-}
-
-const ProfileData = () =>{
- const {data} = useContext(GlobalDataApi);
- let handleLogout = () => {
-  localStorage.removeItem("TOKEN");
-  window.location.reload();
-  navigator('/');
-};
-  return(
-    <div className="tooltip-box flex flex-col gap-1">
-      <article className="pl-1 border-b-[1px] text-neutral-800">
-        <h1 className="font-semibold text-[16px] text-neutral-700"> Hello <span className="text-neutral-800 font-bold">{data.name}</span> </h1>
-        <p className="text-[13px]"> Shop with latest fashion here !! </p>
-      </article>
-      <article className="pl-1 py-2 border-b-[1px] text-neutral-800">
-        <ul>
-          <li>Orders</li>
-          <li>WishList</li>
-          <li>Gift Cards</li>
-          <li>Contact Us</li>
-          <li>Shop Insiders</li>
-        </ul>
-      </article>
-      <article className="pl-1 py-2 border-b-[1px] text-neutral-800">
-      <ul>
-          <li>Sparrow Credits</li>
-          <li>Coupons</li>
-          <li>Saved Cards</li>
-          <li>saved VPA</li>
-          <li>Saved Addresses</li>
-        </ul>
-      </article>
-      <article className="pl-1 py-2 text-neutral-800">
-        <ul>
-          <li>Edit Profile</li>
-          <li onClick={handleLogout} className="cursor-pointer">Logout</li>
-        </ul>
-      </article>
-      
-    </div>
-  )
-}
+import { NavHeaderTooltip, ProfileTooltip } from "./hoverables/CustomTooltip";
+import ClothingData from "./hoverables/ClothingData";
+import ProfileData from "./hoverables/ProfileData";
+import BeautyData from "./hoverables/BeautyData";
+import HomeLivingData from "./hoverables/HomeLivingData";
 
 const Navbar = () => {
   let TOKEN = localStorage.getItem("TOKEN");
 
-  const { inputVal, setInputVal, cartLength, setCartLength } = useContext(GlobalDataApi);
+  const { inputVal, setInputVal, cartLength, setCartLength } =
+    useContext(GlobalDataApi);
 
   let [name, setName] = useState("");
 
   const cartItemCount = useSelector(CartItems);
-
-  // const str = JSON.stringify(data.name);
-  // setName(str.slice(0, str.indexOf(" ")));
 
   console.log(name);
 
@@ -102,27 +36,30 @@ const Navbar = () => {
           className="relative left-8 h-[45px] hover:pl-4 transition-all duration-[1s]"
         />
         <div className="pl-12 uppercase text-gray-600 text-[13.3px] font-bold text-center">
-          <a
-            href="#"
-            className="px-5 py-2 h-[100%] hover:bg-yellow-200 hover:text-red-900 rounded-[6px] transition-all duration-300"
-          >
-            Clothing
-          </a>
-
+          <NavHeaderTooltip className="relative left-2" title={<ClothingData />}>
+            <a
+              href="#"
+              className="px-5 py-2 h-[100%] hover:bg-yellow-200 hover:text-red-900 rounded-[6px] transition-all duration-300"
+            >
+              Clothing
+            </a>
+          </NavHeaderTooltip>
+          <NavHeaderTooltip title={<BeautyData />}>
           <a
             href="#"
             className="px-5 py-2  hover:bg-yellow-200 hover:text-red-900 rounded-[6px] transition-all duration-300"
           >
             Beauty
           </a>
-          {/* <CustomWidthTooltip className="relative top-2" title={<MensData />}> */}
+          </NavHeaderTooltip>
+          <NavHeaderTooltip title={<HomeLivingData />}>
           <a
             href="#"
             className="px-5 py-2  hover:bg-yellow-200 hover:text-red-900 rounded-[6px] transition-all duration-300"
           >
             HOME & LIVING
           </a>
-          {/* </CustomWidthTooltip> */}
+          </NavHeaderTooltip>
           <a
             href="#"
             className="px-5 py-2  hover:bg-yellow-200 hover:text-red-900 rounded-[6px] transition-all duration-300"
@@ -176,12 +113,12 @@ const Navbar = () => {
               </h1>
             </div>
             <div className="pt-3">
-              <CustomWidthTooltip title={<ProfileData />}>
-              <FaRegUserCircle className="border-b-2 border-gray-300 pb-2 text-[33px] text-[#05230cba] hover:border-green-700 hover:text-[37px] hover:text-[#24843c] transition-all duration-300" />
-              <h1 className="text-[9px] pt-[2px] font-bold text-center text-[#0d3918] w-[50px] pr-4">
-                Profile
-              </h1>
-              </CustomWidthTooltip>
+              <ProfileTooltip title={<ProfileData />}>
+                <FaRegUserCircle className="border-b-2 border-gray-300 pb-2 text-[33px] text-[#05230cba] hover:border-green-700 hover:text-[37px] hover:text-[#24843c] transition-all duration-300" />
+                <h1 className="text-[9px] pt-[2px] font-bold text-center text-[#0d3918] w-[50px] pr-4">
+                  Profile
+                </h1>
+              </ProfileTooltip>
             </div>
           </>
         ) : (
