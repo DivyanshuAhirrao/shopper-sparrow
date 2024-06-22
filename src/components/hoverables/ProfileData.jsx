@@ -2,9 +2,10 @@ import { useContext } from "react";
 import { GlobalDataApi } from "../../context/GlobalData";
 
 const ProfileData = () => {
+  const name = localStorage.getItem('profile-name')
     const { data } = useContext(GlobalDataApi);
     let handleLogout = () => {
-      localStorage.removeItem("TOKEN");
+      localStorage.clear();
       window.location.reload();
       navigator("/");
     };
@@ -14,7 +15,7 @@ const ProfileData = () => {
           <h1 className="font-semibold text-[16px] text-neutral-700">
             {" "}
             Hello <span className="text-neutral-800 font-bold">
-              {data.name}
+              {name ? name : data.name}
             </span>{" "}
           </h1>
           <p className="text-[13px]"> Shop with latest fashion here !! </p>

@@ -55,7 +55,7 @@ const Signup = () => {
           <article className=" p-3 border-emerald-800 rounded-md  text-white w-[410px] flex justify-center items-center flex-col gap-4">
             <div className="text-emerald-800  w-[100%] flex justify-start">
               <img src={img} alt="" height="60px" width="50px" />
-              <h2 id="logo-blink" className="font-mono font-bold tracking-wider text-[20px]">
+              <h2 id="logo-blink" className="font-mono font-bold tracking-wider text-[20px] cursor-pointer" onClick={()=> navigator('/')}>
                 SPARROW SHOPPER
               </h2>
             </div>
@@ -130,6 +130,9 @@ const Signup = () => {
                   className="focus:bg-emerald-100 placeholder:opacity-55 w-[100%] border-2 border-emerald-600 text-gray-700 font-mono text-[18px]  h-[45px] pl-4"
                 />
               </div>
+              <h2 className="w-[100%] cursor-pointer text-[15px] text-end text-emerald-800 hover:underline transition-all duration-200 hover:text-red-600" onClick={()=> navigator('/login')}>
+                Already a Member ! Login Now !!
+              </h2>
               <div className="w-[100%] cursor-pointer pl-1 text-emerald-800 hover:underline transition-all duration-200 hover:text-red-600">
                 <input
                   type="checkbox"

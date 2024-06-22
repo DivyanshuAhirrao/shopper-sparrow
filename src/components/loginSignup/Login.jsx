@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PosterSwipper from "./PosterSwipper";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 import img from "../../media/logo.png";
 import flowerpot from "./posters/flowerpot.png";
+import {auth, provider} from '../auth/firebaseConfig';
+import { signInWithPopup } from "firebase/auth";
 
 const Login = () => {
   let [state, setState] = useState({
     email: "",
     password: "",
   });
-
+  const[signedInWithGoogle, setSignedInWithGoogle] = useState('');
   let payload = { email: state.email, password: state.password };
   let navigator = useNavigate();
 
@@ -35,11 +37,30 @@ const Login = () => {
       }
     };
     postLogin();
-    // name = email;
-    // setName(name = email);
-    console.log(email, password);
-    // alert("form submitted successfully ");
   };
+
+  function navigateToHomePage(){
+    const emailData = localStorage.getItem('googleEmail');
+    if(emailData){
+      navigator('/');
+    }
+  }
+
+  const handleSignInWithGoogle =()=> {
+    signInWithPopup(auth,provider).then((data)=> {
+      setSignedInWithGoogle(data.user.email)
+      console.log(data, " auth data");
+      localStorage.setItem('TOKEN-1', data?.user?.stsTokenManager?.accessToken);
+      localStorage.setItem('profile-name', data?.user?.displayName);
+      localStorage.setItem('profile-img-url', data?.user?.photoURL)
+      localStorage.setItem('googleEmail', data.user.email);
+      navigateToHomePage();
+    })
+  }
+
+  useEffect(()=>{
+    setSignedInWithGoogle(localStorage.getItem('googleEmail'));
+  },[]);
 
   let handleChange = (e) => {
     let { name, value } = e.target;
@@ -50,15 +71,13 @@ const Login = () => {
     <div className="h-[100vh] w-[100%] flex">
       <aside className="h-[100%] w-[50%]">
         <div className="bg-white h-[100vh] w-[100%] flex justify-center items-center">
-          {/* <Link to="/" className="absolute top-0 right-0 p-2 pt-24">
-            BACK
-          </Link> */}
           <article className="p-3 border-emerald-800 rounded-md  text-white w-[410px] flex justify-center items-center flex-col gap-6">
-            <div className="text-emerald-800  w-[100%] flex justify-start">
+            <div className="text-emerald-800  w-[100%] flex justify-start" >
               <img src={img} alt="" height="60px" width="50px" />
               <h2
                 id="logo-blink"
-                className="font-mono font-bold tracking-wider text-[20px]"
+                className="font-mono font-bold tracking-wider text-[20px] cursor-pointer"
+                onClick={()=> navigator('/')}
               >
                 SPARROW SHOPPER
               </h2>
@@ -74,8 +93,10 @@ const Login = () => {
               </p>
             </div>
             <div className=" w-[100%] text-emerald-800 h-[45px] border-2 font-semibold border-emerald-600 flex justify-center items-center gap-2">
+              <button className="flex gap-1" onClick={handleSignInWithGoogle}>
               <FcGoogle className="text-[23px]" />
               Login with Google
+              </button>
             </div>
 
             <div className="w-[75%] text-center relative top-2">
@@ -111,10 +132,13 @@ const Login = () => {
                   className="focus:bg-emerald-100 w-[100%] border-2 border-emerald-600 text-gray-700 font-mono text-[18px]  h-[45px] pl-4"
                 />
               </div>
-              <div className="w-[100%] cursor-pointer text-end text-emerald-800 hover:underline transition-all duration-200 hover:text-red-600">
+              <div className="w-[100%] cursor-pointer text-end text-[15px] text-emerald-800  hover:underline transition-all duration-200 hover:text-red-600">
                 Forget Password ?
               </div>
-              <button className="w-[100%] bg-gray-900 hover:tracking-widest transition-all duration-200 text-white rounded-md h-[44px] ">
+              <h2 className="w-[100%] cursor-pointer text-[15px] text-end text-emerald-800 hover:underline transition-all duration-200 hover:text-red-600" onClick={()=> navigator('/signup')}>
+                Not yet Member ! Sign Up Now !!
+              </h2>
+              <button className="w-[100%] bg-gray-900 hover:tracking-widest transition-all duration-200 text-white rounded-md h-[44px]">
                 LOGIN
               </button>
             </form>

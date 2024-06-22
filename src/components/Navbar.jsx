@@ -16,16 +16,19 @@ import BeautyData from "./hoverables/BeautyData";
 import HomeLivingData from "./hoverables/HomeLivingData";
 
 const Navbar = () => {
-  let TOKEN = localStorage.getItem("TOKEN");
-
-  const { inputVal, setInputVal, cartLength, setCartLength } =
-    useContext(GlobalDataApi);
-
+  let TOKEN = localStorage.getItem("TOKEN") || localStorage.getItem("TOKEN-1");
+  const profileImgUrl = localStorage.getItem('profile-img-url');
+  const { inputVal, setInputVal, cartLength, setCartLength } = useContext(GlobalDataApi);
   let [name, setName] = useState("");
-
   const cartItemCount = useSelector(CartItems);
-
-  console.log(name);
+  const dynamicSearchText = ["Phones", "Laptop", "Camera", "Groceries", "and many more..."];
+  const[currentIndex, setCurrentIndex] = useState(0);
+  useEffect(()=>{
+    const interval = setInterval(() => {
+      setCurrentIndex((prev)=> (prev+1) % dynamicSearchText.length)
+    }, 2500);
+    return ()=> clearInterval(interval);
+  },[])
 
   return (
     <nav className="flex justify-between sticky top-0 z-30 items-center w-[100%] h-[75px]">
@@ -36,7 +39,10 @@ const Navbar = () => {
           className="relative left-8 h-[45px] hover:pl-4 transition-all duration-[1s]"
         />
         <div className="pl-12 uppercase text-gray-600 text-[13.3px] font-bold text-center">
-          <NavHeaderTooltip className="relative left-2" title={<ClothingData />}>
+          <NavHeaderTooltip
+            className="relative left-2"
+            title={<ClothingData />}
+          >
             <a
               href="#"
               className="px-5 py-2 h-[100%] hover:bg-yellow-200 hover:text-red-900 rounded-[6px] transition-all duration-300"
@@ -45,20 +51,20 @@ const Navbar = () => {
             </a>
           </NavHeaderTooltip>
           <NavHeaderTooltip title={<BeautyData />}>
-          <a
-            href="#"
-            className="px-5 py-2  hover:bg-yellow-200 hover:text-red-900 rounded-[6px] transition-all duration-300"
-          >
-            Beauty
-          </a>
+            <a
+              href="#"
+              className="px-5 py-2  hover:bg-yellow-200 hover:text-red-900 rounded-[6px] transition-all duration-300"
+            >
+              Beauty
+            </a>
           </NavHeaderTooltip>
           <NavHeaderTooltip title={<HomeLivingData />}>
-          <a
-            href="#"
-            className="px-5 py-2  hover:bg-yellow-200 hover:text-red-900 rounded-[6px] transition-all duration-300"
-          >
-            HOME & LIVING
-          </a>
+            <a
+              href="#"
+              className="px-5 py-2  hover:bg-yellow-200 hover:text-red-900 rounded-[6px] transition-all duration-300"
+            >
+              HOME & LIVING
+            </a>
           </NavHeaderTooltip>
           <a
             href="#"
@@ -72,7 +78,7 @@ const Navbar = () => {
         <form className="h-[100%] w-[100%] flex justify-center items-center pl-1">
           <input
             type="search"
-            placeholder="search brands, products and more..."
+            placeholder={`Search for ${dynamicSearchText[currentIndex]}`}
             id="search-box"
             value={inputVal}
             onChange={(e) => {
@@ -114,7 +120,15 @@ const Navbar = () => {
             </div>
             <div className="pt-3">
               <ProfileTooltip title={<ProfileData />}>
-                <FaRegUserCircle className="border-b-2 border-gray-300 pb-2 text-[33px] text-[#05230cba] hover:border-green-700 hover:text-[37px] hover:text-[#24843c] transition-all duration-300" />
+                {profileImgUrl ? (
+                  <img
+                    src={profileImgUrl}
+                    alt="profile-pic"
+                    className="h-10 rounded-full relative bottom-1"
+                  />
+                ) : (
+                  <FaRegUserCircle className="border-b-2 border-gray-300 pb-2 text-[33px] text-[#05230cba] hover:border-green-700 hover:text-[37px] hover:text-[#24843c] transition-all duration-300" />
+                )}
                 <h1 className="text-[9px] pt-[2px] font-bold text-center text-[#0d3918] w-[50px] pr-4">
                   Profile
                 </h1>

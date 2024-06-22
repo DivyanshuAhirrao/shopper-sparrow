@@ -10,19 +10,17 @@ import Swipper from "../sliders/Swipper";
 import PosterSwipper from "../sliders/PosterSwipper";
 import Payments from "./Payments";
 import FilterWrapper from "./filters/FilterWrapper";
+import PRODUCTS from '../jsonfiles/products.json'
 
 
 const UI = () => {
-
   let { inputVal, users } = useContext(GlobalDataApi);
-
-  
   return (
     <>
       {inputVal == "" ? (
         <main>
           <figure className="w-[100%] flex gap-[0.2%] justify-arround">
-            <img src={img} alt="sample" className="w-[79.8%] " />
+            <img src={img} alt="sample" className="w-[79.8%]"/>
             <img
               src={coupon}
               // id="discount-coupon"
@@ -63,7 +61,7 @@ const UI = () => {
               <FilterWrapper />
             </aside>
             <aside className=" lg:w-[82%] sm:w-[67%]">
-              <Cards users={users} />
+              <Cards users={PRODUCTS.products} />
             </aside>
           </article>
         </main>
@@ -73,7 +71,7 @@ const UI = () => {
             <FilterWrapper />
           </aside>
           <aside className=" lg:w-[82%] sm:w-[67%]">
-            <Cards users={users} />
+            <Cards users={PRODUCTS.products} />
           </aside>
         </article>
       )}
