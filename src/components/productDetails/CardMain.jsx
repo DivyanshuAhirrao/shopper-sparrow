@@ -38,7 +38,10 @@ const CardMain = ({ e }) => {
   let handleImgError = (e) => {
     e.target.src = "https://demofree.sirv.com/nope-not-here.jpg";
   };
-  
+  const formattedPrice = (price) => {
+    const calculatedPrice = (price * 80).toFixed(2);
+    return calculatedPrice.length > 8 ? `${calculatedPrice.slice(0, 5)}...` : calculatedPrice;
+  };
   return (
     <div
       className="h-[24.5rem] w-[16rem] border-b-2 border-green-700 overflow-hidden"
@@ -83,7 +86,7 @@ const CardMain = ({ e }) => {
             </div>
             <div>
               <strike className="text-gray-400 pl-7 pt-1 text-[12px] relative right-[11.5px]">
-                Rs.{e.price * 80}{" "}
+                Rs.{formattedPrice(e.price)}
               </strike>{" "}
               <span className="text-red-500 relative right-[5.5px] text-[14px] font-bold">
                 ({Math.round(e.discountPercentage)}% OFF)

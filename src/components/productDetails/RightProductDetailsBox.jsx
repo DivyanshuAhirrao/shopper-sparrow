@@ -21,7 +21,6 @@ const RightProductDetailsBox = ({ props }) => {
   const addProduct = () => {
     alert('Product added successfully')
     let flag = false;
-    console.log(itemsArray);
     cartDetails.items.map((item) => {
       if (item.id === props.id) {
         alert("Item already added");
@@ -29,10 +28,7 @@ const RightProductDetailsBox = ({ props }) => {
       } 
     });
     if(!flag){
-      console.log("Adding More Item");
         dispatch(addToCart(props));
-        console.log("I from Cartmain : ");
-        console.log(props);
     }
   };
 

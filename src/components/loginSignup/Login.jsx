@@ -28,7 +28,6 @@ const Login = () => {
           "https://api.escuelajs.co/api/v1/auth/login",
           payload
         );
-        console.log(data);
         localStorage.setItem("TOKEN", JSON.stringify(data));
         navigator("/");
       } catch (error) {
@@ -49,7 +48,6 @@ const Login = () => {
   const handleSignInWithGoogle =()=> {
     signInWithPopup(auth,provider).then((data)=> {
       setSignedInWithGoogle(data.user.email)
-      console.log(data, " auth data");
       localStorage.setItem('TOKEN-1', data?.user?.stsTokenManager?.accessToken);
       localStorage.setItem('profile-name', data?.user?.displayName);
       localStorage.setItem('profile-img-url', data?.user?.photoURL)

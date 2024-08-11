@@ -13,9 +13,7 @@ const Cards = () => {
     gitUsers();
   }, []);
 
-  console.log(users);
-
-  let  notImageFound=(e)=> {
+  let notImageFound=(e)=> {
     e.target.src = "https://demofree.sirv.com/nope-not-here.jpg";
   }
 

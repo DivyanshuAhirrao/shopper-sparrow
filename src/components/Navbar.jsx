@@ -123,7 +123,7 @@ const Navbar = () => {
                 {profileImgUrl ? (
                   <img
                     src={profileImgUrl}
-                    alt="profile-pic"
+                    alt=""
                     className="h-10 rounded-full relative bottom-1"
                   />
                 ) : (

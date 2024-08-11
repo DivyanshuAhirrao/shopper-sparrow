@@ -8,9 +8,6 @@ import { Link } from "react-router-dom";
 
 const CartAsideLeft = ({ props }) => {
   const { items } = props;
-  useEffect(() => {
-    console.log(items);
-  }, []);
   return (
     <>
       <aside className="w-[740px] h-[100vh] bg-slate-100 flex flex-col items-center gap-2 p-4">

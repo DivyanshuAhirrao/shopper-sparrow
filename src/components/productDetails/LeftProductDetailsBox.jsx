@@ -4,7 +4,6 @@ const LeftProductDetailsBox = ({props}) => {
 
     let{ images , title} = props;
     let[imgno , setImgno] = useState(0)
-    console.log(images);
 
   return (
     <article className="w-[50%] h-[100%] flex flex-col">

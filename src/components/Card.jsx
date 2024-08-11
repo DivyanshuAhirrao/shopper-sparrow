@@ -16,8 +16,6 @@ const Card = ({ e }) => {
 
   const addNewUser = () => {
     dispatch(addToCart(e));
-    console.log(cartDetails);
-    console.log(e);
   };
 
 
@@ -77,12 +75,9 @@ const Card = ({ e }) => {
     setCartLength(cartLength - 1);
     if (CartSet.length > 0) {
       CartSet.forEach((el) => {
-        console.log(e.id);
-        console.log(el.id);
         if (el.id === e.id) {
           setCartLength(cartLength - 1);
           cartArray.pop(e);
-          console.log(cartArray);
         } else {
           alert("Add Product to cart first !!");
         }

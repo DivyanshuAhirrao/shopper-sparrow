@@ -1,4 +1,4 @@
-import React, { useContext,useState } from "react";
+import React, { useContext,useEffect,useState } from "react";
 import img from "../media/img.png";
 import coupon from "../media/coupon.png";
 import { GlobalDataApi } from "../context/GlobalData";
@@ -10,11 +10,39 @@ import Swipper from "../sliders/Swipper";
 import PosterSwipper from "../sliders/PosterSwipper";
 import Payments from "./Payments";
 import FilterWrapper from "./filters/FilterWrapper";
-import PRODUCTS from '../jsonfiles/products.json'
 
 
 const UI = () => {
   let { inputVal, users } = useContext(GlobalDataApi);
+  const [products, setProducts] = useState([]);
+
+  const loadDummyData = async () => {
+    const categories = [
+      "mens-shirts",
+      "womens-dresses",
+      "womens-shoes",
+      "mens-shoes",
+      "womens-watches",
+      "mens-watches",
+      "womens-bags",
+    ];
+    const responses = await Promise.all(
+      categories.map((category) =>
+        fetch(`https://dummyjson.com/products/category/${category}`)
+      )
+    );
+    const data = await Promise.all(
+      responses.map((response) => response.json())
+    );
+    const groupedProducts = data.flatMap((item) => item.products);
+    return groupedProducts;
+  };
+
+  useEffect(() => {
+    loadDummyData().then(data => {
+      setProducts(data);
+    });
+  }, []);
   return (
     <>
       {inputVal == "" ? (
@@ -61,7 +89,7 @@ const UI = () => {
               <FilterWrapper />
             </aside>
             <aside className=" lg:w-[82%] sm:w-[67%]">
-              <Cards users={PRODUCTS.products} />
+              <Cards users={products} />
             </aside>
           </article>
         </main>
@@ -71,7 +99,7 @@ const UI = () => {
             <FilterWrapper />
           </aside>
           <aside className=" lg:w-[82%] sm:w-[67%]">
-            <Cards users={PRODUCTS.products} />
+            <Cards users={products} />
           </aside>
         </article>
       )}
