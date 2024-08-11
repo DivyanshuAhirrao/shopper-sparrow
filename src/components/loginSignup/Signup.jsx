@@ -23,12 +23,10 @@ const Signup = () => {
     e.preventDefault();
     let postSignupData = async () => {
       let payload = { name, email, password, avatar };
-      console.log(payload);
       let { data } = await axios.post(
         "https://api.escuelajs.co/api/v1/users/",
         payload
       );
-      console.log("signup data: " + JSON.stringify(data));
     };
 
     postSignupData();

@@ -31,7 +31,6 @@ const PriceFilter = () => {
         for (let j = pric[i].p1; j <= maxPrice; j++) {
           if (j === e.price * 80) {
             setInputVal(e.price);
-            // console.log(e, j);
           }
         }
       }
@@ -40,7 +39,6 @@ const PriceFilter = () => {
         for (let j = pric[i].p1; j <= pric[i].p2; j++) {
           if (j === e.price * 80) {
             setInputVal(e.price);
-            // console.log(e, j);
           }
         }
         for (
@@ -68,14 +66,6 @@ const PriceFilter = () => {
     "Rs. 2500-5000",
     "Rs. 5000 & above",
   ];
-
-  // let { inputVal, setInputVal } = React.useContext(GlobalDataApi);
-
-  // let handleCheckBox = (e) => {
-  //   let val = e.target.value/80;
-  //   console.log(val);
-  //   setInputVal(inputVal = val);
-  // };
 
   return (
     <>
