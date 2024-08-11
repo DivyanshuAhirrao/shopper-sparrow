@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/slice/cartSlice";
 import { removeFromCart } from "../../redux/slice/cartSlice";
 import toast from "react-hot-toast";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const CardMain = ({ e }) => {
   let { setProductId } = useContext(GlobalDataApi);
@@ -26,26 +28,34 @@ const CardMain = ({ e }) => {
   };
 
   const removeProduct = (id) => {
-    const itemExists = cartDetails.items.some(item => item.id === id);
+    const itemExists = cartDetails.items.some((item) => item.id === id);
     if (itemExists) {
       dispatch(removeFromCart(id));
-      toast.success("Product removed successfully !!")
+      toast.success("Product removed successfully !!");
     } else {
       alert("Add item to cart first !");
     }
   };
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   let handleImgError = (e) => {
     e.target.src = "https://demofree.sirv.com/nope-not-here.jpg";
   };
   const formattedPrice = (price) => {
     const calculatedPrice = (price * 80).toFixed(2);
-    return calculatedPrice.length > 8 ? `${calculatedPrice.slice(0, 5)}...` : calculatedPrice;
+    return calculatedPrice.length > 8
+      ? `${calculatedPrice.slice(0, 5)}...`
+      : calculatedPrice;
   };
   return (
     <div
       className="h-[24.5rem] w-[16rem] border-b-2 border-green-700 overflow-hidden"
       key={e.id}
+      data-aos="zoom-out-down"
+      data-aos-duration="500"
     >
       <div className="h-[17rem] w-[16rem] overflow-hidden">
         <FaRegHeart className="absolute pl-2 pt-2 text-[33px] text-red-100 hover:text-red-400 cursor-pointer z-20 hover:text-[36px] transition-all duration-300" />
@@ -102,7 +112,7 @@ const CardMain = ({ e }) => {
             <IoArrowRedoSharp />
           </button>
           <button
-            onClick={()=>removeProduct(e.id)}
+            onClick={() => removeProduct(e.id)}
             className=" w-[50%] h-[90%] bg-red-200 hover:bg-red-400 transition-all duration-300 text-[18px] hover:text-[20px] rounded-md pl-14"
           >
             <MdDeleteSweep />

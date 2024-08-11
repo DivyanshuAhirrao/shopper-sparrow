@@ -11,8 +11,8 @@ const GlobalProvider = ({ children }) => {
   let [cartProducts, setCartProducts] = useState([]);
   let [cartArray, setCartArray] = useState([]);
   let [productId, setProductId] = useState(1);
+  const [products, setProducts] = useState([]);
   let CartSet = [];
-
   
   let TOKEN = localStorage.getItem("TOKEN");
 
@@ -62,6 +62,8 @@ const GlobalProvider = ({ children }) => {
         setProductId,
         data,
         TOKEN,
+        products, 
+        setProducts
       }}
     >
       {children}
