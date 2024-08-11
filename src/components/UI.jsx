@@ -11,11 +11,9 @@ import PosterSwipper from "../sliders/PosterSwipper";
 import Payments from "./Payments";
 import FilterWrapper from "./filters/FilterWrapper";
 
-
 const UI = () => {
-  let { inputVal, users } = useContext(GlobalDataApi);
-  const [products, setProducts] = useState([]);
-
+  let { inputVal, products, setProducts } = useContext(GlobalDataApi);
+ 
   const loadDummyData = async () => {
     const categories = [
       "mens-shirts",

@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import LeftProductDetailsBox from "./LeftProductDetailsBox";
 import RightProductDetailsBox from "./RightProductDetailsBox";
 import DATA from "../../jsonfiles/products.json";
@@ -9,25 +9,28 @@ import BackNavigator from "../BackNavigator";
 import Navbar from "../Navbar";
 
 const ProductDetailsPage = () => {
-
-  let products = DATA.products;
+  const { products } = useContext(GlobalDataApi);
+  
   const currentURL =  window.location.href;
   let splits = currentURL.split("/");
-  let id = splits[4]-1; 
+  let id = Number(splits[4]);
+   
+  const product = products.find(item => item.id === id);
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
   return (
-    <>
       <main className="w-[100%] h-[100vh]">
         <Navbar />
         <BackNavigator />
         <section className=" h-[89%] flex justify-center items-center">
           <main className=" h-[100%] w-[80%] flex flex-wrap">
-            <LeftProductDetailsBox props={products[id]} />
-            <RightProductDetailsBox props={products[id]} />
+            <LeftProductDetailsBox props={product} />
+            <RightProductDetailsBox props={product} />
           </main>
         </section>
       </main>
-    </>
   );
 };
 

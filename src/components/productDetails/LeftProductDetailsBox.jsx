@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 
 const LeftProductDetailsBox = ({props}) => {
-
+  
     let{ images , title} = props;
     let[imgno , setImgno] = useState(0)
 
