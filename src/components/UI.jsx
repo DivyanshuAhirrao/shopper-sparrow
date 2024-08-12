@@ -10,6 +10,8 @@ import Swipper from "../sliders/Swipper";
 import PosterSwipper from "../sliders/PosterSwipper";
 import Payments from "./Payments";
 import FilterWrapper from "./filters/FilterWrapper";
+import { Toaster, toast } from "react-hot-toast";
+import WelcomeToast from "./toast-message/WelcomeToast";
 
 const UI = () => {
   let { inputVal, products, setProducts } = useContext(GlobalDataApi);
@@ -35,14 +37,33 @@ const UI = () => {
     const groupedProducts = data.flatMap((item) => item.products);
     return groupedProducts;
   };
+  
+  const showToast = (name, profileImgUrl) => {
+    toast.custom((t) => (
+      <WelcomeToast
+        name={name}
+        profileImgUrl={profileImgUrl}
+        onClose={() => toast.dismiss(t.id)}
+      />
+    ));
+  };
 
   useEffect(() => {
     loadDummyData().then(data => {
       setProducts(data);
     });
+    const name = localStorage?.getItem('profile-name');
+    const profileImgUrl = localStorage?.getItem('profile-img-url');
+    const hasToastBeenShown = localStorage?.getItem('toast-shown');
+
+    if (name && profileImgUrl && !hasToastBeenShown) {
+      showToast(name, profileImgUrl);
+      localStorage.setItem('toast-shown', 'true');
+    }
   }, []);
   return (
     <>
+    <Toaster />
       {inputVal == "" ? (
         <main>
           <figure className="w-[100%] flex gap-[0.2%] justify-arround">
