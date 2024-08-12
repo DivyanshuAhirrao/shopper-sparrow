@@ -4,72 +4,24 @@ import { IoArrowRedoSharp } from "react-icons/io5";
 import { MdDeleteSweep } from "react-icons/md";
 import { GlobalDataApi } from "../context/GlobalData";
 import { IoMdStar } from "react-icons/io";
-// import ProductDetailsPage from "./productDetails/ProductDetailsPage";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { CartItems, addToCart } from "../redux/slice/cartSlice";
+import { addToCart } from "../redux/slice/cartSlice";
+import { Toaster, toast } from "react-hot-toast";
 
 const Card = ({ e }) => {
   const dispatch = useDispatch();
-
-  const cartDetails = useSelector((state)=> state.cart);
-
   const addNewUser = () => {
     dispatch(addToCart(e));
   };
-
 
   let {
     cartLength,
     setCartLength,
     cartArray,
-    setCartArray,
     CartSet,
-    productId,
     setProductId,
   } = useContext(GlobalDataApi);
-
-  // let handleAdder = (ele) => {
-  //   console.log(e.id);
-  //   if (cartArray.length = 0) {
-  //     setCartArray(cartArray.push(e));
-  //     console.log(cartArray);
-  //     setCartLength((cartLength = cartLength + 1));
-  //   } else if (cartArray.length > 0) {
-  //     cartArray.map((el) => {
-  //       if (el.id == e.id) {
-  //         alert("Product Already Added");
-  //         console.log(el.id);
-
-  //       } else {
-  //         cartArray.push(e);
-  //         console.log(cartArray);
-  //       }
-  //     });
-  //   }
-  // };
-
-  // let handleAdder = (ele) => {
-  //   if (CartSet.length === 0) {
-  //     CartSet.push(e);
-  //     console.log(CartSet);
-  //     console.log("Product Added first time");
-  //   } else if (CartSet.length > 0) {
-  //     CartSet.map((x) => {
-  //       if (x.id === e.id) {
-  //         console.log(x.id);
-  //         console.log(e.id);
-  //         alert("Product Already Addded");
-  //       } else {
-  //         CartSet.push(e);
-  //         console.log(CartSet);
-  //         console.log("Product Added Secondly");
-  //       }
-  //     });
-  //   }
-  // };
-
-  // console.log(CartSet.length);
 
   let handleRemover = (ele) => {
     setCartLength(cartLength - 1);
@@ -79,7 +31,7 @@ const Card = ({ e }) => {
           setCartLength(cartLength - 1);
           cartArray.pop(e);
         } else {
-          alert("Add Product to cart first !!");
+          toast.loading("Add Product to cart first !!");
         }
       });
     }
@@ -91,6 +43,7 @@ const Card = ({ e }) => {
 
   return (
     <>
+    <Toaster />
       <div
         className="h-[24.5rem] w-[16rem] border-b-2 border-green-700 overflow-hidden"
         key={e.id}

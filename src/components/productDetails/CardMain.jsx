@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/slice/cartSlice";
 import { removeFromCart } from "../../redux/slice/cartSlice";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -33,7 +33,17 @@ const CardMain = ({ e }) => {
       dispatch(removeFromCart(id));
       toast.success("Product removed successfully !!");
     } else {
-      alert("Add item to cart first !");
+      toast.error('Add Product to cart first !!', {
+        style: {
+          border: '1px solid #713200',
+          padding: '16px',
+          color: '#713200',
+        },
+        iconTheme: {
+          primary: '#713200',
+          secondary: '#FFFAEE',
+        },
+      });
     }
   };
 
@@ -51,10 +61,12 @@ const CardMain = ({ e }) => {
       : calculatedPrice;
   };
   return (
+    <>
+    <Toaster />
     <div
       className="h-[24.5rem] w-[16rem] border-b-2 border-green-700 overflow-hidden"
       key={e.id}
-      data-aos="zoom-out-down"
+      data-aos="zoom-out-up"
       data-aos-duration="500"
     >
       <div className="h-[17rem] w-[16rem] overflow-hidden">
@@ -120,6 +132,7 @@ const CardMain = ({ e }) => {
         </article>
       </div>
     </div>
+    </>
   );
 };
 
