@@ -1,4 +1,3 @@
-import React from "react";
 import GlobalProvider from "./context/GlobalData";
 import {
   BrowserRouter,
@@ -10,6 +9,7 @@ import CartModal from "./components/cart/CartModal";
 import ProductDetailsPage from "./components/productDetails/ProductDetailsPage";
 import Login from "./components/loginSignup/Login";
 import Signup from "./components/loginSignup/Signup";
+import OtpVerifier from "./components/loginSignup/OtpVerifier";
 
 const App = () => {
   // let router = createBrowserRouter([
@@ -35,6 +35,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Layouts />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/otp_login_beta" element={<OtpVerifier />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/productDetails/:productID" element={<ProductDetailsPage />} />
           <Route path="/cart" element={<CartModal />} />
