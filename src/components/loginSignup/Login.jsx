@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PosterSwipper from "./PosterSwipper";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 import img from "../../media/logo.png";
@@ -13,7 +13,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const[signedInWithGoogle, setSignedInWithGoogle] = useState('');
+  const[, setSignedInWithGoogle] = useState('');
   let payload = { email: state.email, password: state.password };
   let navigator = useNavigate();
 
